@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render
-from django.http import HttpResponse
 from rest_framework.response import Response
 from rest_framework import viewsets
 from rest_framework.views import APIView
@@ -33,7 +31,13 @@ class PotatoDetail(APIView):
 		 	return Potato.objects.get(id=id)
 		except Potato.DoesNotExist:
 			raise Http404
+	
 	def get(self, request, id, format=None):
 		potato = self.get_object(id)
 		serializer = PotatoSerializer(potato)
 		return Response(serializer.data)
+	
+	def delete(self, request, id, format=None):
+		potato = self.get_object(id)
+		potato.delete()
+		return Response(status=status.HTTP_204_NO_CONTENT)

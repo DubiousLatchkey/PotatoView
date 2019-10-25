@@ -5,6 +5,7 @@ from django.db import models
 
 # Create your models here.
 
+#How are you holding up?  Because I'M A POTATO
 class Potato(models.Model):
 	name = models.CharField(max_length=50, default='9gag')
 	description = models.CharField(max_length=1000, default='Not Reddit')
