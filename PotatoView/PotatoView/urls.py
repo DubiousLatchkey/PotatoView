@@ -20,5 +20,5 @@ from django.conf.urls import include
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url('potato/', include('potato.urls')),
+    url('api/v1/', include('potato.urls')),
 ]
