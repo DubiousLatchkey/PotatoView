@@ -4,7 +4,7 @@ from django.db import models
 
 class PotatoSerializer(serializers.Serializer):
 	id = serializers.IntegerField(read_only=True) 
-	name = serializers.CharField(required=False, allow_blank=True, max_length=50)
+	name = serializers.CharField(required=True, allow_blank=False, max_length=50)
 	description = serializers.CharField(required=False, allow_blank=True, max_length=1000)
 	species = serializers.CharField(required=False, allow_blank=True, max_length=50)
 	variety = serializers.CharField(required=False, allow_blank=True, max_length=50)
@@ -25,7 +25,7 @@ class PotatoSerializer(serializers.Serializer):
 
 class ShortPotatoSerializer(serializers.Serializer):
 	id = serializers.IntegerField(read_only=True) 
-	name = serializers.CharField(required=False, allow_blank=True, max_length=50)
+	name = serializers.CharField(required=True, allow_blank=False, max_length=50)
 	species = serializers.CharField(required=False, allow_blank=True, max_length=50)
 	variety = serializers.CharField(required=False, allow_blank=True, max_length=50)
 

@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from rest_framework.response import Response
 from rest_framework import viewsets
 from rest_framework.views import APIView
+from rest_framework import status
 from serializers import PotatoSerializer
 from serializers import ShortPotatoSerializer
 from potato.models import Potato
@@ -18,6 +19,13 @@ class PotatoList(APIView):
 		potatoes = Potato.objects.all()
 		serializer = ShortPotatoSerializer(potatoes, many = True)
 		return Response(serializer.data)
+
+	def post(self, request, format=None):
+		serializer = PotatoSerializer(data=request.data)
+		if(serializer.is_valid()):
+			serializer.save();
+			return Response(serializer.data, status=status.HTTP_201_CREATED)
+		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class PotatoDetail(APIView):
 	def get_object(self, id):
